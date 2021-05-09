@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= Book.model_name.human %></h1>
-
+<%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
 <table>
   <thead>
     <tr>
