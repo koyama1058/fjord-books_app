@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
 
   protected
 
-    def congigure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :zip, :address, :introduction])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :zip, :address, :introduction])
-    end
+  def congigure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name zip address introduction])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[name zip address introduction])
+  end
 end
