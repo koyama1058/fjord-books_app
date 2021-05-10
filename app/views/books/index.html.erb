@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Books</h1>
+<h1><%= Book.model_name.human(count: 2) %></h1>
 
 <table>
   <thead>
     <tr>
-      <th><%= t("Title") %></th>
-      <th><%= t("Memo") %></th>
-      <th><%= t("Author") %></th>
-      <th><%= t("Picture") %></th>
+      <th><%= Book.human_attribute_name("book.title") %></th>
+      <th><%= Book.human_attribute_name("book.memo") %></th>
+      <th><%= Book.human_attribute_name("book.author") %></th>
+      <th><%= Book.human_attribute_name("book.picture") %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,9 +20,9 @@
         <td><%= book.memo %></td>
         <td><%= book.author %></td>
         <td><%= book.picture %></td>
-        <td><%= link_to t('Show'), book %></td>
-        <td><%= link_to t('Edit'), edit_book_path(book) %></td>
-        <td><%= link_to t('Destroy'), book, method: :delete, data: { confirm: t('Are you sure?') } %></td>
+        <td><%= link_to I18n.t('views.books.show'), book %></td>
+        <td><%= link_to I18n.t('views.books.edit'), edit_book_path(book) %></td>
+        <td><%= link_to I18n.t('views.books.destroy'), book, method: :delete, data: { confirm: I18n.t('views.books.are_you_sure?') } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to t('New Book'), new_book_path %>
+<%= link_to I18n.t('views.books.new_book'), new_book_path %>

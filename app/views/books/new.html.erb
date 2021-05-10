@@ -1,5 +1,5 @@
-<h1><%= t("New Book") %></h1>
+<h1><%= I18n.t("views.books.new_book") %></h1>
 
 <%= render 'form', book: @book %>
 
-<%= link_to t('Back'), books_path %>
+<%= link_to I18n.t('views.books.back'), books_path %>
