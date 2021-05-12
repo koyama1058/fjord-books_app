@@ -10,9 +10,9 @@
   <%= @user.name %>
 </p>
 
-<% if @user.avatar.attached? %>
-  <%= image_tag @user.avatar %>
-<% end %>
+<p>
+    <%= image_tag @user.avatar.variant(resize: "100x100") if @user.avatar.attached? %>
+</p>
 
 <p>
   <strong><%= User.human_attribute_name(:postal_code) %>:</strong>
