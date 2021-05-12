@@ -17,4 +17,8 @@ class User < ApplicationRecord
       user.name = auth.info.name 
     end
   end
+
+  def self.create_unique_string
+    SecureRandom.uuid
+  end
 end
