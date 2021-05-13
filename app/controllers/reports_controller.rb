@@ -1,6 +1,5 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: %i[ show edit update destroy ]
-
   # GET /reports or /reports.json
   def index
     @reports = Report.all
@@ -17,6 +16,7 @@ class ReportsController < ApplicationController
 
   # GET /reports/1/edit
   def edit
+    redirect_to action: "index" if current_user != @report.user
   end
 
   # POST /reports or /reports.json
