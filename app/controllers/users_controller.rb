@@ -7,5 +7,16 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @following = Relationship.where(follower_id: current_user.id, followed_id: @user.id)
+  end
+
+  def followings
+    @user = User.find(params[:id])
+    @users = @user.following.order(:id).page(params[:page])
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers.order(:id).page(params[:page])
   end
 end

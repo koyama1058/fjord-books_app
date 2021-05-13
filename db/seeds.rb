@@ -54,6 +54,12 @@ end
 
 User.destroy_all
 
+User.create(
+  email: 'sample@com',
+  password: '123456',
+  name: 'hoge'
+)
+
 User.transaction do
   50.times do |n|
     name = Faker::Name.name
@@ -68,9 +74,16 @@ User.transaction do
   end
 end
 
-User.order(:id).each do |user|
-  image_url = Faker::Avatar.image(slug: user.email, size: '150x150')
-  user.avatar.attach(io: URI.parse(image_url).open, filename: 'avatar.png')
-end
+# User.order(:id).each do |user|
+#   image_url = Faker::Avatar.image(slug: user.email, size: '150x150')
+#   user.avatar.attach(io: URI.parse(image_url).open, filename: 'avatar.png')
+# end
+
+users = User.all
+user  = users.first
+following = users[2..10]
+followers = users[3..15]
+following.each { |followed| Relationship.create(follower_id: user.id, followed_id: followed.id) }
+followers.each { |followed| Relationship.create(follower_id: followed.id, followed_id: user.id) }
 
 puts '初期データの投入が完了しました。' # rubocop:disable Rails/Output
