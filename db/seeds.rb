@@ -54,6 +54,13 @@ end
 
 User.destroy_all
 
+# 開発時にログインするアカウントの作成
+User.create(
+  email: "sample@com",
+  name: "hoge",
+  password: "123456"
+)
+
 User.transaction do
   55.times do |n|
     name = Faker::Name.name
@@ -68,10 +75,11 @@ User.transaction do
   end
 end
 
-User.order(:id).each do |user|
-  image_url = Faker::Avatar.image(slug: user.email, size: '150x150')
-  user.avatar.attach(io: URI.parse(image_url).open, filename: 'avatar.png')
-end
+# 画像をつけるとユーザーの一覧表示と詳細表示が重くて時間がかかるためコメントアウト
+# User.order(:id).each do |user|
+#   image_url = Faker::Avatar.image(slug: user.email, size: '150x150')
+#   user.avatar.attach(io: URI.parse(image_url).open, filename: 'avatar.png')
+# end
 
 # User.destroy_all で全件削除されているはずだが念のため
 Relationship.destroy_all
