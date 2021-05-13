@@ -91,4 +91,15 @@ User.order(id: :desc).each do |user|
   end
 end
 
+# 適当なreportを作成
+users = User.all
+report_users = users[0..15]
+report_users.each do |user|
+  Report.create(
+    title: Faker::Games::Pokemon.location,
+    text: "#{Faker::Games::Pokemon.name}って可愛いね!!",
+    user_id: user.id
+  )
+end
+
 puts '初期データの投入が完了しました。' # rubocop:disable Rails/Output
