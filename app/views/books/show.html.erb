@@ -22,7 +22,7 @@
 
 <%= form_with(url: book_comments_path(@book), local: true, method: :post ) do |f| %>
   <div class="field">
-    <%= f.label :content %>
+    <%= f.label :content, t('views.common.content') %>
     <%= f.text_field :content %>
   </div>
 
