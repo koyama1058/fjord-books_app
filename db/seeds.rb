@@ -102,4 +102,23 @@ report_users.each do |user|
   )
 end
 
+comment_users = users[0..15]
+comment_users.each.with_index do |user, i|
+  Comment.create(
+    content: "#{Faker::Name.first_name}です。#{Faker::Creature::Animal.name}好きです",
+    user_id: i,
+    commentable_type: "Report",
+    commentable_id: i
+  )
+end
+
+comment_users.each.with_index do |user, i|
+  Comment.create(
+    content: "#{Faker::Name.first_name}です。#{Faker::Creature::Animal.name}好きです",
+    user_id: i,
+    commentable_type: "Book",
+    commentable_id: i
+  )
+end
+
 puts '初期データの投入が完了しました。' # rubocop:disable Rails/Output
