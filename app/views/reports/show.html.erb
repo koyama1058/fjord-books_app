@@ -15,6 +15,39 @@
   <%= @report.created_at %>
 </p>
 
+<%= form_with(url: report_comments_path(@report), local: true, method: :post ) do |f| %>
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+  </div>
+
+  <div class="action">
+    <%= f.submit '送信' %>
+  </div>
+<% end%>
+
+<table>
+  <caption>コメント一覧</caption>
+  <thead>
+    <tr>
+      <th>ユーザー名</th>
+      <th>コメント</th>
+      <th>投稿日</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.user.name %></td>
+        <td><%= comment.content %></td>
+        <td><%= comment.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <% if current_user == @report.user %>
   <%= link_to 'Edit', edit_report_path(@report) %> |
 <% end %>
