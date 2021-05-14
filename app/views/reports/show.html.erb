@@ -12,7 +12,7 @@
 
 <p>
   <strong><%= Report.human_attribute_name(:created_at) %>:</strong>
-  <%= @report.created_at %>
+  <%= @report.created_at.to_s(:datetime_jp) %>
 </p>
 
 <%= form_with(url: report_comments_path(@report), local: true, method: :post ) do |f| %>
