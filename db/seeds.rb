@@ -56,9 +56,9 @@ User.destroy_all
 
 # 開発時にログインするアカウントの作成
 User.create(
-  email: "sample@com",
-  name: "hoge",
-  password: "123456"
+  email: 'sample@com',
+  name: 'hoge',
+  password: '123456'
 )
 
 User.transaction do
@@ -103,20 +103,20 @@ report_users.each do |user|
 end
 
 comment_users = users[0..15]
-comment_users.each.with_index do |user, i|
+comment_users.each.with_index do |_user, i|
   Comment.create(
     content: "#{Faker::Name.first_name}です。#{Faker::Creature::Animal.name}好きです",
     user_id: i,
-    commentable_type: "Report",
+    commentable_type: 'Report',
     commentable_id: i
   )
 end
 
-comment_users.each.with_index do |user, i|
+comment_users.each.with_index do |_user, i|
   Comment.create(
     content: "#{Faker::Name.first_name}です。#{Faker::Creature::Animal.name}好きです",
     user_id: i,
-    commentable_type: "Book",
+    commentable_type: 'Book',
     commentable_id: i
   )
 end
