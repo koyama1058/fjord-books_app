@@ -2,10 +2,10 @@
 
 class UsersController < ApplicationController
   def index
-    @users = User.order(:id).page(params[:page])
+    @users = User.order(:id).page(params[:page]).with_attached_avatar
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]).with_attached_avatar
   end
 end
