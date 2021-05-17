@@ -302,7 +302,6 @@ DEPENDENCIES
   i18n_generators
   jbuilder (~> 2.7)
   kaminari
-  letter_opener
   letter_opener_web
   listen (~> 3.3)
   pry-rails
