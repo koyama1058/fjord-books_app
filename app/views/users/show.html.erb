@@ -1,4 +1,4 @@
-<h1>ユーザー詳細</h1>
+<h1><%= t('views.user.show') %></h1>
 
 <table>
   <thead>
@@ -27,5 +27,5 @@
 </table>
 
 <br>
-<%= link_to 'ユーザー一覧へ', users_path %>
-<%= link_to '本一覧へ', root_path %>
+<%= link_to t('views.user.index'), users_path %>
+<%= link_to t('views.book.index'), root_path %>

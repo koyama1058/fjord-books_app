@@ -1,4 +1,4 @@
-<h1>ユーザー一覧</h1>
+<h1><%= t('views.user.index') %></h1>
 
 <table>
   <thead>
@@ -32,4 +32,4 @@
 <%= paginate @users %>
 
 <br>
-<%= link_to '本一覧へ', root_path %>
+<%= link_to t('views.book.index'), root_path %>
