@@ -1,10 +1,10 @@
 <table>
-  <caption>コメント一覧</caption>
+  <caption><%= Comment.model_name.human %></caption>
   <thead>
     <tr>
-      <th>ユーザー情報</th>
-      <th>コメント</th>
-      <th>投稿日</th>
+      <th><%= Comment.human_attribute_name(:user) %></th>
+      <th><%= Comment.human_attribute_name(:content) %></th>
+      <th><%= Comment.human_attribute_name(:created_at) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

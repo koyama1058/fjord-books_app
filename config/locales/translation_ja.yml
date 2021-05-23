@@ -22,3 +22,7 @@ ja:
         title: 日報タイトル
         text: 本文
         created_at: 投稿日
+      comment:
+        content: コメント
+        created_at: 投稿日
+        user: ユーザー情報

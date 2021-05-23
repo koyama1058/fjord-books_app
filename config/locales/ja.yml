@@ -256,3 +256,5 @@ ja:
     registrations:
       edit:
         title: "アカウント編集"
+  report:
+    prohibited_this_report_from_being_saved: "日報が保存できませんでした。"
