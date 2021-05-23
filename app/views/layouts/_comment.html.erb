@@ -18,7 +18,7 @@
           <td><%= comment.user.name %></td>
         <% end %>
         <td><%= comment.content %></td>
-        <td><%= comment.created_at.to_s(:datetime_jp) %></td>
+        <td><%= l(comment.created_at, format: :short) %></td>
       </tr>
     <% end %>
   </tbody>
