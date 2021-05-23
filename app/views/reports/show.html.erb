@@ -18,7 +18,7 @@
 <%= form_with(url: report_comments_path(@report), local: true, method: :post ) do |f| %>
   <div class="field">
     <%= f.label :content, t('views.common.content') %>
-    <%= f.text_field :content %>
+    <%= f.text_field :content, required: :true %>
   </div>
 
   <div class="action">
