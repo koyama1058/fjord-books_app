@@ -2,6 +2,7 @@
 
 class ReportsController < ApplicationController
   before_action :set_report, only: %i[show edit update destroy]
+  before_action :check_user, only: %i[edit update destroy]
   # GET /reports or /reports.json
   def index
     @reports = Report.order(:id).page(params[:page])
@@ -18,9 +19,7 @@ class ReportsController < ApplicationController
   end
 
   # GET /reports/1/edit
-  def edit
-    redirect_to action: 'index' if current_user != @report.user
-  end
+  def edit; end
 
   # POST /reports or /reports.json
   def create
@@ -58,6 +57,10 @@ class ReportsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_report
     @report = Report.find(params[:id])
+  end
+
+  def check_user
+    redirect_to reports_path if @report.user != current_user
   end
 
   # Only allow a list of trusted parameters through.
