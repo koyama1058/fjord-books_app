@@ -20,5 +20,18 @@
   <%= image_tag(@book.picture_url) if @book.picture.present? %>
 </p>
 
+<%= form_with(url: book_comments_path(@book), local: true, method: :post ) do |f| %>
+  <div class="field">
+    <%= f.label :content, t('views.common.content') %>
+    <%= f.text_field :content, required: :true %>
+  </div>
+
+  <div class="action">
+    <%= f.submit '送信' %>
+  </div>
+<% end %>
+
+<%= render partial: 'layouts/comment', locals: { comments: @comments } %>
+
 <%= link_to t('views.common.edit'), edit_book_path(@book) %> |
 <%= link_to t('views.common.back'), books_path %>

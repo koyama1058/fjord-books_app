@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= Report.human_attribute_name(:title) %>:</strong>
+  <%= @report.title %>
+</p>
+
+<p>
+  <strong><%= Report.human_attribute_name(:text) %>:</strong>
+  <%= @report.text %>
+</p>
+
+<p>
+  <strong><%= Report.human_attribute_name(:created_at) %>:</strong>
+  <%= l(@report.created_at, format: :short) %>
+</p>
+
+<%= form_with(url: report_comments_path(@report), local: true, method: :post ) do |f| %>
+  <div class="field">
+    <%= f.label :content, t('views.common.content') %>
+    <%= f.text_field :content, required: :true %>
+  </div>
+
+  <div class="action">
+    <%= f.submit '送信' %>
+  </div>
+<% end%>
+
+<%= render partial: 'layouts/comment', locals: { comments: @comments } %>
+
+<% if current_user == @report.user %>
+  <%= link_to t('views.common.edit'), edit_report_path(@report) %> |
+<% end %>
+<%= link_to t('views.common.back'), reports_path %>

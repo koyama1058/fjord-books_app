@@ -54,6 +54,13 @@ end
 
 User.destroy_all
 
+# 開発時にログインするアカウントの作成
+User.create(
+  email: 'sample@com',
+  name: 'hoge',
+  password: '123456'
+)
+
 User.transaction do
   55.times do |n|
     name = Faker::Name.name
@@ -68,10 +75,11 @@ User.transaction do
   end
 end
 
-User.order(:id).each do |user|
-  image_url = Faker::Avatar.image(slug: user.email, size: '150x150')
-  user.avatar.attach(io: URI.parse(image_url).open, filename: 'avatar.png')
-end
+# 画像をつけるとユーザーの一覧表示と詳細表示が重くて時間がかかるためコメントアウト
+# User.order(:id).each do |user|
+#   image_url = Faker::Avatar.image(slug: user.email, size: '150x150')
+#   user.avatar.attach(io: URI.parse(image_url).open, filename: 'avatar.png')
+# end
 
 # User.destroy_all で全件削除されているはずだが念のため
 Relationship.destroy_all
@@ -81,6 +89,36 @@ User.order(id: :desc).each do |user|
   User.where('id < ?', user.id).each do |other|
     user.follow(other)
   end
+end
+
+# 適当なreportを作成
+users = User.all
+report_users = users[0..15]
+report_users.each do |user|
+  Report.create(
+    title: Faker::Games::Pokemon.location,
+    text: "#{Faker::Games::Pokemon.name}って可愛いね!!",
+    user_id: user.id
+  )
+end
+
+comment_users = users[0..15]
+comment_users.each.with_index do |_user, i|
+  Comment.create(
+    content: "#{Faker::Name.first_name}です。#{Faker::Creature::Animal.name}好きです",
+    user_id: i,
+    commentable_type: 'Report',
+    commentable_id: i
+  )
+end
+
+comment_users.each.with_index do |_user, i|
+  Comment.create(
+    content: "#{Faker::Name.first_name}です。#{Faker::Creature::Animal.name}好きです",
+    user_id: i,
+    commentable_type: 'Book',
+    commentable_id: i
+  )
 end
 
 puts '初期データの投入が完了しました。' # rubocop:disable Rails/Output
