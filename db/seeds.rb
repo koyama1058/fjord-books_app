@@ -83,7 +83,7 @@ users = User.all
 user  = users.first
 following = users[2..10]
 followers = users[3..15]
-following.each { |followed| Relationship.create(follower_id: user.id, followed_id: followed.id) }
-followers.each { |followed| Relationship.create(follower_id: followed.id, followed_id: user.id) }
+following.each { |followed| Friendship.create(follower_id: user.id, followed_id: followed.id) }
+followers.each { |followed| Friendship.create(follower_id: followed.id, followed_id: user.id) }
 
 puts '初期データの投入が完了しました。' # rubocop:disable Rails/Output
