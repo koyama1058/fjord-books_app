@@ -6,6 +6,16 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[github]
 
   has_one_attached :avatar
+  has_many :active_friendships,   class_name: 'Friendship',
+                                    inverse_of: 'follower',
+                                    foreign_key: 'follower_id',
+                                    dependent: :destroy
+  has_many :passive_friendships,  class_name: 'Friendship',
+                                    inverse_of: 'followed',
+                                    foreign_key: 'followed_id',
+                                    dependent: :destroy
+  has_many :following, through: :active_friendships, source: :followed
+  has_many :followers, through: :passive_friendships, source: :follower
 
   validates :uid, uniqueness: { scope: :provider }, if: -> { uid.present? }
 
